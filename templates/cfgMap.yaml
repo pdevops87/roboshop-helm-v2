@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: configmap-01
 data:
-  release_Name: {{ .Release.Name }}
+  release_Name: {{ .Release.Name | quote }}
   username: {{ .Values.username }}
   password: {{ .Values.password }}
 
