@@ -5,10 +5,8 @@ metadata:
 data:
   drink: {{ quote .Values.favorite.drink }}
   food: {{ quote .Values.favorite.food }}
-  labels:
-    name: aadi
-    {{ if eq .Values.favorite.drink "coffee" }}
-    food: {{ quote .Values.favorite.snack }}
+  {{ if eq .Values.favorite.drink "coffee" }}
+  snack: {{ quote .Values.favorite.snack }}
     {{ end }}
 
 
