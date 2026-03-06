@@ -1,11 +1,19 @@
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: configmap-01
+#data:
+#  release_Name: {{ .Release.Name | quote }}
+#
+#
+#
+#
+
+# first way to add env into a container
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap-01
+  name: config-env-01
 data:
-  release_Name: {{ .Release.Name | quote }}
-  username: {{ .Values.username }}
-  password: {{ .Values.password }}
-
-
- 
+  username: abc
+  password: xyz
