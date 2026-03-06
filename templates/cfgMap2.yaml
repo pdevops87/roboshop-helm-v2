@@ -10,5 +10,3 @@ data:
     food: {{ if eq .Values.favorite.drink "coffee" }}
     class: 3D
      {{ end }}
-#
-## to trim spaces then we use {{- }} ----left side {{ -}} --- right side
