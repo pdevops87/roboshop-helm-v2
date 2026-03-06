@@ -7,7 +7,8 @@ data:
   food: {{ quote .Values.favorite.food }}
   labels:
     name: aadi
-    food: {{ if eq .Values.favorite.drink "coffee" }}
-     {{ end }}
+    food: {{ quote .Values.favorite.snack }}
+    {{ if eq .Values.favorite.drink "coffee" }}
     class: 3D
+    {{ end }}
 
