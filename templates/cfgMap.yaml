@@ -17,3 +17,4 @@ metadata:
 data:
   username: abc
   password: xyz
+  release_Name: {{ .Release.Name | quote }}
