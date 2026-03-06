@@ -8,5 +8,6 @@ data:
   labels:
     name: aadi
     food: {{ if eq .Values.favorite.drink "coffee" }}
-    class: 3D
      {{ end }}
+    class: 3D
+
