@@ -9,6 +9,7 @@ data:
     name: aadi
     {{ if eq .Values.favorite.drink "coffee" }}
     food: {{ quote .Values.favorite.snack }}
-    class: 3D
     {{ end }}
+
+
 
