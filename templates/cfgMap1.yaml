@@ -5,12 +5,3 @@ metadata:
 data:
   {{ (.Files.Glob "files/data.conf").AsConfig | indent 2 }}
 
-
-
-
-
-#  chartName: {{ .Chart.Name }}
-#  chartVersion: {{ .Chart.Version }}
-#  return_file_content: {{ .Files.Get "files/data.conf" | indent 2 }}
-#  kubernetes_versionInfo: {{ .Capabilities.KubeVersion.Version }}
-#  templateName: {{ .Template.Name }}
