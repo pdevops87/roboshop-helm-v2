@@ -1,0 +1,12 @@
+username: aadi
+password: jai
+favorite:
+  drink: coke
+  food: xxxx
+  snack: burger
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions
+  - pineapple

@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ quote .Values.favorite.food }}
+  snack: {{ .Values.favorite.snack | upper | quote }}
+  protein_food: {{ .Values.favorite.protein | default "paneer" | quote }}
+
+# wrapped the output in double quotes
+#  food: {{ quote .Values.favorite.food }} --- function call style
+#  food: {{ .Values.favorite.food | quote }} --- pipelines style
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ quote .Values.favorite.food }}
+  labels:
+    name: aadi
+    food: {{ if eq .Values.favorite.drink "coffee" }}
+    class: 3D
+     {{ end }}
+
+# to trim spaces then we use {{- }} ----left side {{ -}} --- right side
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ quote .Values.favorite.food }}
+  labels:
+    name: aadi
+    food: {{- if eq .Values.favorite.drink "coffee" }}
+    class: 3D
+      {{- end }}
+
+---
+# root context
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ quote .Values.favorite.food }}
+  labels:
+    name: aadi
+    food: {{- if eq .Values.favorite.drink "coffee" }}
+    class: 3D
+      {{- end }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  {{- with .Values.favorite }}
+  drink: {{ .drink | default "tea" | quote }}
+  food: {{ .food | upper | quote }}
+  release: {{ $.Release.Name }}  # here we use $ means release name will get from root context(means values.yaml)
+#  here Release.Name in .Values.favorite
+  {{- end }}
+
+# here in the above code everytime writing .Values.favorite repeatedly at that time we use "with"
+
+---

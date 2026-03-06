@@ -1,0 +1,20 @@
+{{ if (.Values.cfg.enabled | default false) }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-schema-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: INSTANA_ENABLED
+              value: "false"
+          envFrom:
+            - configMapRef:
+                name: catalogue-schema
+      restartPolicy: Never
+  backoffLimit: 0
+{{ end }}

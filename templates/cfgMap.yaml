@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-01
+data:
+  release_Name: {{ .Release.Name }}
+  username: {{ .Values.username }}
+  password: {{ .Values.password }}
+
+
+ 
