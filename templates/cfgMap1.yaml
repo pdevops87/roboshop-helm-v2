@@ -4,3 +4,8 @@ metadata:
   name: configmap-02
 data:
 files: {{ (.Files.Glob "files/data.conf").AsConfig | indent 2 }}
+chartName: {{ .Chart.Name | indent 2 }}
+chartVersion: {{ .Chart.Version | indent 2  }}
+return_file_content: {{ .Files.Get "files/data.conf" | indent 2 }}
+kubernetes_versionInfo: {{ .Capabilities.KubeVersion.Version | indent 2 }}
+templateName: {{ .Template.Name | indent 2 }}
