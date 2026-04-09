@@ -9,7 +9,7 @@ data:
   name: "aadi"
   {{ end }}
   lname: "jai"
-  food: {{ .Values.favorite.food | upper | quote }}
+  food: {{ .Values.favourite.food | upper | quote }}
 
 
 
