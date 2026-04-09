@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config-env-01
-data:
-  username: abc
-  password: xyz
-  release_Name: {{ .Release.Name | quote }}
