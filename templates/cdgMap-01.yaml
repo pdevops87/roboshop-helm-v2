@@ -9,7 +9,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-01
 data:
   myvalue: "Hello World"
 
@@ -17,7 +17,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-02
 data:
   name: "{{ .Values.name }}"
   chartName: "{{ .Chart.Name }}"
@@ -27,7 +27,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-03
 data:
   name: "{{ .Values.name }}"
   chartName: "{{ .Chart.Name }}"
