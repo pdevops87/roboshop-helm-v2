@@ -28,5 +28,16 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap-03
+data:
   data.conf: |-
 {{ .Files.Get "files/data.conf" | indent 4 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  name: "{{ .Values.name }}"
+  chartName: {{ .Chart.Name | quote }}
+  chartVersion: {{ .Chart.Version | quote }}
