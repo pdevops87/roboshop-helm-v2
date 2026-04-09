@@ -29,7 +29,6 @@ data:
   chartName: {{ .Chart.Name | quote }}
   chartVersion: {{ .Chart.Version | quote }}
 
-
 ---
 # transform lower to upper
 apiVersion: v1
@@ -41,7 +40,6 @@ data:
   food: {{ .Values.favourite.food }}
   drink: {{ .Values.favourite.drink }}
 
-
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -52,40 +50,3 @@ data:
   food: {{ .Values.favourite.food }}
   drink: {{ .Values.favorite.drink | default "tea" | quote }}
 
----
-# if condition
-#If .Values.favorite.drink equals "coffee", then output mug: "true"
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  name: {{ .Release.Name }}-configmap
-#data:
-#   myvalue: "Hello World"
-#   drink: {{ .Values.favorite.drink | default "tea" | quote }}
-#   food: {{ .Values.favorite.food | upper | quote }}
-#{{ if eq .Values.favorite.drink "coffee" | indent 4 }}
-#mug: "true"
-#{{ end }}
-#
-#---
-## without whitespace : {{- if }} {{- end }}
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  name: {{ .Release.Name }}-configmap
-#data:
-#  myvalue: "Hello World"
-#  drink: {{ .Values.favorite.drink | default "tea" | quote }}
-#  {{ if eq .Values.favorite.drink "coffee" | indent 4 }}
-#  name: "aadi"
-#  {{ end }}
-#  lname: "jai"
-#  food: {{ .Values.favorite.food | upper | quote }}
-
----
-
-
-
-
-# helm install demo .
-# here demo is a releaseName so name: demo-configmap
