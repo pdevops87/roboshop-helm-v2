@@ -36,7 +36,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-04
 data:
   name: "{{ .Values.name }}"
   chartName: {{ .Chart.Name | quote }}
