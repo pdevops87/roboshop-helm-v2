@@ -4,8 +4,8 @@ metadata:
   name: {{ .Release.Name }}-configmap-05
 data:
   myvalue: "Hello World"
-  drink: {{ .Values.favorite.drink | default "tea" | quote }}
-  {{ if eq .Values.favorite.drink "coffee" }}
+  drink: {{ .Values.favourite.drink | default "tea" | quote }}
+  {{ if eq .Values.favourite.drink "coffee" }}
   name: "aadi"
   {{ end }}
   lname: "jai"
