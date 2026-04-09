@@ -11,8 +11,19 @@ data:
   lname: "jai"
   food: {{ .Values.favourite.food | upper | quote }}
 
-
-
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-05
+data:
+  myvalue: "Hello World"
+  drink: {{ .Values.favourite.drink | default "tea" | quote }}
+  {{- if eq .Values.favourite.drink "coffee" }}
+  name: "aadi"
+  {{- end }}
+  lname: "jai"
+  food: {{ .Values.favourite.food | upper | quote }}
 
 
 
