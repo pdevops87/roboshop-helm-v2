@@ -60,4 +60,4 @@ metadata:
 data:
   name: "{{ .Values.name }}"
   food: {{ .Values.favourite.food }}
-  drink: {{ .Values.favorite.drink | default "tea" | quote }}
+  drink: {{ .Values.favourite.drink | default "tea" | quote }}
