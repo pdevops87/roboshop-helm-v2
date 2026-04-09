@@ -14,3 +14,24 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   myvalue: "Hello World"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  name: "{{ .Values.name }}"
+  chartName: "{{ .Chart.Name }}"
+  chartVersion: "{{ .Chart.Version }}"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  name: "{{ .Values.name }}"
+  chartName: "{{ .Chart.Name }}"
+  chartVersion: "{{ .Chart.Version }}"
+{{ .Files.Get "files/data.conf" | indent 4 }}
