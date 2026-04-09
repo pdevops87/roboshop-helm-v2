@@ -4,3 +4,13 @@ metadata:
   name: mychart-configmap
 data:
   myvalue: "Hello World"
+
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
