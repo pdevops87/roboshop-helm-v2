@@ -42,31 +42,55 @@ data:
   {{- end }}
 
 
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-configmap-06
-data:
-  myvalue: "Hello World"
-  {{- with .Values.favourite }}
-  drink: {{ .drink | default "tea" | quote }}
-  food: {{ .food | upper | quote }}
-  release: {{ $.Release.Name }}
-  {{- end }}
-
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-configmap-07
-data:
-  myvalue: "Hello World"
-  toppings: |-
-    {{- range .Values.pizzaToppings }}
-    {{- end }}
-
+#---
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: {{ .Release.Name }}-configmap-06
+#data:
+#  myvalue: "Hello World"
+#  {{- with .Values.favourite }}
+#  drink: {{ .drink | default "tea" | quote }}
+#  food: {{ .food | upper | quote }}
+#  release: {{ $.Release.Name }}
+#  {{- end }}
+#
+#
+#---
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: {{ .Release.Name }}-configmap-07
+#data:
+#  myvalue: "Hello World"
+#  toppings: |-
+#    {{- range .Values.pizzaToppings }}
+#    {{- end }}
+#
+#
+#---
+#{{ if  .Values.schema.enabled | default "false" }}
+#apiVersion: batch/v1
+#kind: Job
+#metadata:
+#  name: catalogue
+#spec:
+#  template:
+#    spec:
+#      containers:
+#      {{- range .Values.schema_files }}
+#        - name: schema
+#          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+#          env:
+#            - name: SCHEMA_FILE
+#              value: {{ . | quote }}
+#          envFrom:
+#            - configMapRef:
+#                name: catalogue-schema
+#      {{- end }}
+#      restartPolicy: Never
+#  backoffLimit: 0
+#{{ end }}
 
 # helm install demo .
 # here demo is a releaseName so name: demo-configmap

@@ -9,3 +9,9 @@ pizzaToppings:
   - peppers
   - onions
   - pineapple
+
+schema_files:
+  - db/master-data.js
+  - db/app-user.sql
+  - db/schema.sql
+  - db/master-data.sql
