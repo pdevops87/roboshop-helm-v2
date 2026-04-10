@@ -3,4 +3,9 @@ name: aadi
 favourite:
   food: biryani
   drink: coke
-
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions
+  - pineapple

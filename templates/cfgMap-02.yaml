@@ -25,7 +25,49 @@ data:
   lname: "jai"
   food: {{ .Values.favourite.food | upper | quote }}
 
+---
+#with
+# in this example we will get an error because release key value is not contain in favourite
+# so either to write outside of a with block or use $
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-05
+data:
+  myvalue: "Hello World"
+  {{- with .Values.favourite }}
+  drink: {{ .drink | default "tea" | quote }}
+  food: {{ .food | upper | quote }}
+  release: {{ .Release.Name }}
+  {{- end }}
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-06
+data:
+  myvalue: "Hello World"
+  {{- with .Values.favourite }}
+  drink: {{ .drink | default "tea" | quote }}
+  food: {{ .food | upper | quote }}
+  release: {{ $.Release.Name }}
+  {{- end }}
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-07
+data:
+  myvalue: "Hello World"
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    {{- end }}
 
 
 # helm install demo .
 # here demo is a releaseName so name: demo-configmap
+
