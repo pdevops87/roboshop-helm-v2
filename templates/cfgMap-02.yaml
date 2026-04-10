@@ -71,27 +71,28 @@ data:
 #
 #---
 #{{ if  .Values.schema.enabled | default "false" }}
-#apiVersion: batch/v1
-#kind: Job
-#metadata:
-#  name: catalogue
-#spec:
-#  template:
-#    spec:
-#      containers:
-#      {{- range .Values.schema_files }}
-#        - name: schema
-#          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-#          env:
-#            - name: SCHEMA_FILE
-#              value: {{ . | quote }}
-#          envFrom:
-#            - configMapRef:
-#                name: catalogue-schema
-#      {{- end }}
-#      restartPolicy: Never
-#  backoffLimit: 0
-#{{ end }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: catalogue
+spec:
+  template:
+    spec:
+      containers:
+
+        - name: schema
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+      {{- range .Values.schema_files }}
+          env:
+            - name: SCHEMA_FILE
+              value: {{ . | quote }}
+          envFrom:
+            - configMapRef:
+                name: catalogue-schema
+      {{- end }}
+      restartPolicy: Never
+  backoffLimit: 0
+{{ end }}
 
 # helm install demo .
 # here demo is a releaseName so name: demo-configmap
