@@ -70,7 +70,7 @@ data:
 
 #
 #---
-#{{ if  .Values.schema.enabled | default "false" }}
+{{ if  .Values.schema.enabled | default "false" }}
 apiVersion: batch/v1
 kind: Job
 metadata:
